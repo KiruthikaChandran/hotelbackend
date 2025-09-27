@@ -1,38 +1,13 @@
 const mongoose = require('mongoose');
 
 const hotelSchema = new mongoose.Schema({
-    hotel_id: {
-        type: String,
-        unique: true, // Optional, since Mongo already has _id
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: false
-    },
-    rating: {
-        type: Number,
-        min: 0,
-        max: 5
-    },
-    description: {
-        type: String
-    }
+  name: { type: String, required: true },
+  location: { type: String, required: true },
+  rating: { type: Number, min: 0, max: 5 },
+  phone: { type: String, required: true },
+  description: { type: String }
 }, {
-    timestamps: true // adds createdAt & updatedAt
+  timestamps: true
 });
 
 module.exports = mongoose.model('Hotel', hotelSchema);

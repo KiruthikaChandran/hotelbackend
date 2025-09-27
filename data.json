@@ -1,9 +1,7 @@
 {
-"hotel_id": "1001",
 "name": "Wildish",
-"address":"Sri Lanka",
-"email":"wildish@gmail.com",
-"phone":"897654352",
+"location":"Sri Lanka",
 "rating":"4.8",
+"phone":"897654352",
 "description":"Luxury in the Heart of the Wilderness"
 }

@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const hotelController = require('../controllers/hotelController');
+const {
+  getAllHotels,
+  createHotel,
+  updateHotel,
+  deleteHotel
+} = require('../controllers/hotelController');
 
-// Routes for Hotels
-router.get('/', hotelController.getAllHotels);        // GET all hotels
-router.post('/', hotelController.createHotel);        // CREATE new hotel
-router.put('/:id', hotelController.updateHotel);      // UPDATE hotel by ID
-router.delete('/:id', hotelController.deleteHotel);   // DELETE hotel by ID
+router.get('/', getAllHotels);         // GET all hotels
+router.post('/', createHotel);         // POST create hotel
+router.put('/:id', updateHotel);       // PUT update hotel
+router.delete('/:id', deleteHotel);    // DELETE hotel
 
 module.exports = router;
