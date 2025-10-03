@@ -5,8 +5,9 @@ const Hotel = require('../models/hotel');
 const getAllHotels = async (req, res) => {
   try {
     const hotels = await Hotel.find();
-    res.json(hotels);
+    res.status(200).json(hotels);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -21,9 +22,11 @@ const createHotel = async (req, res) => {
     }
 
     const hotel = new Hotel({ name, location, rating, phone, description });
-    const saved = await hotel.save();
-    res.status(201).json(saved);
+    const savedHotel = await hotel.save();
+
+    res.status(201).json(savedHotel);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -37,14 +40,15 @@ const updateHotel = async (req, res) => {
       return res.status(400).json({ message: 'Invalid hotel ID' });
     }
 
-    const updated = await Hotel.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedHotel = await Hotel.findByIdAndUpdate(id, req.body, { new: true });
 
-    if (!updated) {
+    if (!updatedHotel) {
       return res.status(404).json({ message: 'Hotel not found' });
     }
 
-    res.json(updated);
+    res.status(200).json(updatedHotel);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -58,14 +62,15 @@ const deleteHotel = async (req, res) => {
       return res.status(400).json({ message: 'Invalid hotel ID' });
     }
 
-    const deleted = await Hotel.findByIdAndDelete(id);
+    const deletedHotel = await Hotel.findByIdAndDelete(id);
 
-    if (!deleted) {
+    if (!deletedHotel) {
       return res.status(404).json({ message: 'Hotel not found' });
     }
 
-    res.json({ message: 'Hotel deleted successfully' });
+    res.status(200).json({ message: 'Hotel deleted successfully' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
